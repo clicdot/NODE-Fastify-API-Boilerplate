@@ -1,0 +1,14 @@
+services:
+  api:
+    build: .
+    volumes:
+      - "./src:/app/src"
+    ports:
+      - "3200:3000"
+    networks:
+      - m360_default
+      - default
+networks:
+  m360_default:
+    external: true
+version: '2'

@@ -1,0 +1,77 @@
+{
+  "endpoints": {
+    "token": {
+      "url": "/token",
+      "methods": [
+        "POST"
+      ],
+      "request": {
+        "params": {},
+        "body": {
+          "companyId": "string"
+        }
+      }
+    },
+    "v1": {
+      "root": {
+        "url": "/v1/api",
+        "methods": [
+          "GET"
+        ],
+        "request": {
+          "params": {},
+          "headers": {
+            "Authorization": "string"
+          }
+        }
+      },
+      "help": {
+        "url": "/v1/api/help",
+        "methods": [
+          "GET"
+        ],
+        "request": {
+          "params": {}
+        }
+      },
+      "upload": {
+        "url": "/v1/api/file/upload",
+        "methods": [
+          "POST"
+        ],
+        "request": {
+          "params": {},
+          "headers": {
+            "Authorization": "string"
+          }
+        }
+      },
+      "uploadws": {
+        "url": "/v1/api/file/upload/ws",
+        "methods": [
+          "POST"
+        ],
+        "request": {
+          "params": {},
+          "headers": {
+            "Authorization": "string"
+          }
+        }
+      }
+    },
+    "v2": {
+      "root": {
+        "url": "/v2/api",
+        "methods": [
+          "GET"
+        ],
+        "request": {
+          "params": {},
+          "headers": {
+            "Authorization": "string"
+          }
+        }
+      }
+    }
+  }
+}

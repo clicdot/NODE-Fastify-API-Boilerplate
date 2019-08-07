@@ -1,0 +1,282 @@
+---
+swagger: "2.0"
+info:
+  description: "No description"
+  version: "1.0.0"
+  title: "C360 - Utilities API"
+  contact: {}
+host: "go5gjsu.restletmocks.net"
+schemes:
+- "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+security:
+- OAuth2: []
+paths:
+  /utilityEndpoints:
+    get:
+      tags:
+      - "utility endpoints"
+      summary: "Utility endpoints"
+      description: "This API call returns a list with the available utility endpoints"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: true
+        type: "string"
+        description: "Bearer"
+        x-example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjM4Nzk1Mzky...JWT_ENCRYPTED_TOKEN"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            required:
+            - "data"
+            - "meta"
+            type: "object"
+            properties:
+              meta:
+                $ref: "#/definitions/META response model"
+              data:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    /serviceTypes:
+                      type: "string"
+                      description: "Returns a list of service types for the requested\
+                        \ company ID"
+                    /documentTypes:
+                      type: "string"
+                      description: "Returns a list of service types for the requested\
+                        \ company ID"
+    x-restlet:
+      section: "Utility"
+  /serviceTypes:
+    get:
+      tags:
+      - "service types"
+      summary: "Service Types"
+      description: "Request the service types for a specific company"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: true
+        type: "string"
+        description: "Bearer"
+        x-example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjM4Nzk1Mzky...JWT_ENCRYPTED_TOKEN"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            required:
+            - "data"
+            - "meta"
+            type: "object"
+            properties:
+              meta:
+                $ref: "#/definitions/META response model"
+              data:
+                $ref: "#/definitions/Service types list"
+    x-restlet:
+      section: "Utility"
+  /documentTypes:
+    get:
+      tags:
+      - "document types"
+      summary: "Document Types"
+      description: "Request the document types for a specific company"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: true
+        type: "string"
+        description: "Bearer"
+        x-example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjM4Nzk1Mzky...JWT_ENCRYPTED_TOKEN"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            required:
+            - "data"
+            - "meta"
+            type: "object"
+            properties:
+              meta:
+                $ref: "#/definitions/META response model"
+              data:
+                $ref: "#/definitions/Document types list"
+    x-restlet:
+      section: "Utility"
+securityDefinitions:
+  OAuth2:
+    type: "oauth2"
+    tokenUrl: "https://oauth.edrnet.com/oauth/token"
+    flow: "password"
+    scopes: {}
+  Basic authentication:
+    type: "basic"
+definitions:
+  META response model:
+    type: "object"
+    required:
+    - "date"
+    - "function"
+    - "messages"
+    - "responseCode"
+    - "success"
+    properties:
+      success:
+        type: "boolean"
+        example: true
+      responseCode:
+        type: "number"
+        format: "double"
+        default: 200.0
+        minimum: 200
+        maximum: 511
+        example: 200
+      date:
+        type: "string"
+        format: "date-time"
+        example: "2019-05-27T05:49:11Z"
+      function:
+        type: "string"
+        example: "get"
+      messages:
+        required:
+        - "errors"
+        - "info"
+        - "warnings"
+        type: "object"
+        properties:
+          errors:
+            type: "array"
+            items:
+              type: "string"
+          warnings:
+            type: "array"
+            items:
+              type: "string"
+          info:
+            type: "array"
+            items:
+              type: "string"
+    description: "Response model for the utility services"
+    x-restlet:
+      section: "Models"
+  JWT Token:
+    type: "string"
+    description: "JWT Token - this will be used to get the company ID we need the\
+      \ response for. We can also use this token to re-validate if the user has access\
+      \ to query the API or not."
+    example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjM4Nzk1Mzky...JWT_ENCRYPTED_TOKEN"
+    x-restlet:
+      section: "Models"
+  Service types list:
+    type: "object"
+    required:
+    - "services"
+    properties:
+      services:
+        type: "array"
+        items:
+          required:
+          - "isExternal"
+          - "name"
+          - "serviceGroup"
+          - "serviceType"
+          - "type"
+          type: "object"
+          properties:
+            serviceType:
+              type: "string"
+              example: "PhaseIRepEnv"
+            name:
+              type: "string"
+              example: "Phase I Report"
+            isExternal:
+              type: "integer"
+              example: 1
+            type:
+              type: "string"
+              example: "RFP"
+            serviceGroup:
+              type: "string"
+              example: "Environmental"
+    description: "Data model for the service types list"
+    x-restlet:
+      section: "Models"
+  Document types list:
+    type: "object"
+    required:
+    - "services"
+    properties:
+      services:
+        type: "array"
+        items:
+          required:
+          - "documentType"
+          - "documentTypeId"
+          type: "object"
+          properties:
+            documentTypeId:
+              type: "number"
+              example: 611
+            documentType:
+              type: "integer"
+              example: "Residential Appraisal OFSI"
+    description: "Data model for the document types list"
+    x-restlet:
+      section: "Models"
+  Error:
+    type: "object"
+    properties:
+      code:
+        type: "number"
+        minimum: 400
+        maximum: 599
+      description:
+        type: "string"
+      reason:
+        type: "string"
+        example: "Forbidden"
+    example: "{\n    \"code\": 400,\n    \"description\": \"test\"\n}"
+    x-restlet:
+      section: "Errors"
+x-restlet:
+  sections:
+    General:
+      description: "General information about the API"
+    Utility:
+      description: "Utility API endpoints"
+    Models: {}
+    Errors: {}
+  texts:
+    1ma9gfd:
+      title: "Authentification"
+      content: "# Authentication\n\n## OAuth2\n\n> EDR uses only the Client Credentials\
+        \ grant. \n\nThe client must register for a `clientId` and `secret` key.\n\
+        \n* clientId: confidentialApplication\n* secret: topSecret\n\n### Obtaining\
+        \ a token\n\nTo obtain a token you should POST your clientId and secret key\
+        \ to https://security.edrnet.com/oauth/token.\n\nA POST call to the oauth/token\
+        \ api endpoint with the client credentials and the grant type in request body:\n\
+        \n* Headers\n    * Content-Type: \"application/json\"\n\n        * (for example,\
+        \ to use confidentialApplication:topSecret, you should send request body)\n\
+        \    * Request Body\n        * {\n            \"grant_type\":\"client_credentials\"\
+        ,\n            \"client_id\":\"xyz-123\",\n            \"client_secret\":\"\
+        ...secret_key...\",\n            \"scope\":\"*\"\n          }\n\nFor example,\
+        \ using curl:\n\n```\ncurl https://security.edrnet.com/oauth/token \\\n  -H\
+        \ \"Content-Type: application/json\" \\\n  --request POST \\\n  --data '{\"\
+        grant_type\":\"client_credentials\",\"client_id\":\"xyz-123\",\"client_secret\"\
+        :\"...secret_key...\",\"scope\":\"*\"}' \\\n```\n\n```javascript\n{\n\t\"\
+        token_type\": \"bearer\",\n\t\"accessToken\": \"72ab415822b56cf0f9f93f07fe978d9aae859325\"\
+        ,\n\t\"expires_in\": 3600\n}\n```\n\n### Using the token\n\nNow, you can use\
+        \ your brand-new token to access restricted areas. For example, you can GET\
+        \ to https://api.edrnet.com/ including your token at headers:\n\n* Headers\n\
+        \    * Authorization: \"Bearer \" + accessToken\n(for example, Bearer 72ab415822b56cf0f9f93f07fe978d9aae859325)\n\
+        \nFor example, using curl:\n\n```\ncurl https://api.edrnet.com/ \\\n  -H \"\
+        Authorization: Bearer 72ab415822b56cf0f9f93f07fe978d9aae859325\"\n```\n"
+      section: "General"

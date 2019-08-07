@@ -1,0 +1,13 @@
+FROM node:alpine
+
+RUN mkdir /app
+
+WORKDIR /app
+ADD ./package.json /app/package.json
+ADD ./process.json /app/process.json
+
+RUN npm run init
+
+EXPOSE 3000
+
+CMD npm start

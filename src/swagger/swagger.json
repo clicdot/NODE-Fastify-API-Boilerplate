@@ -1,0 +1,15 @@
+{
+  "swagger": {
+    "info": {
+      "title": "Swagger",
+      "description": "Swagger Document for API Project",
+      "version": "0.1.0"
+    },
+    "host": "localhost:3200",
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"]
+  },
+  "exposeRoute": true,
+  "routePrefix": "/swagger"
+}

@@ -1,0 +1,20 @@
+{
+    "name": "Node-Microservice-Lambda-Boilerplate",
+    "script": "./src/",
+    "env": {
+      "PORT": 3200,
+      "NODE_ENV": "DEV"
+    },
+    "env_m360": {
+      "PORT": 3200,
+      "NODE_ENV": "M360"
+    },
+    "env_uat": {
+      "PORT": 3200,
+      "NODE_ENV": "UAT"
+    },
+    "env_production": {
+      "PORT": 3200,
+      "NODE_ENV": "PROD"
+    }
+  }
