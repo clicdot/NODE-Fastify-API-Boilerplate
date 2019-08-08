@@ -1,4 +1,4 @@
-# C360-MicroService--NODE--Boilerplate
+# MicroService--NODE--Boilerplate
 
 This boilerplate was designed to be utilized as a microservice starter kit for NodeJS. There will be a docker-compose.
 
