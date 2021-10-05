@@ -33,7 +33,7 @@
     "fastify-mysql": "^0.3.0",
     "fastify-plugin": "^1.5.0",
     "fastify-redis": "^3.1.0",
-    "fastify-static": "^2.4.0",
+    "fastify-static": "^4.2.4",
     "fastify-swagger": "^2.4.0",
     "fastify-swaggergen": "^1.1.1",
     "fs": "0.0.1-security",
