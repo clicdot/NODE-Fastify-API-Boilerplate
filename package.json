@@ -39,7 +39,7 @@
     "fs": "0.0.1-security",
     "fs-extra": "^8.0.1",
     "pino": "^5.12.6",
-    "swagger-ui-dist": "^3.22.2",
+    "swagger-ui-dist": "^4.1.3",
     "uuid": "^3.3.2",
     "x-xss-protection": "^1.1.0"
   },
