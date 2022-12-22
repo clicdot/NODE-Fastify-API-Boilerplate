@@ -29,7 +29,7 @@
     "fastify-elasticsearch": "^0.4.0",
     "fastify-env": "^0.6.2",
     "fastify-helmet": "^3.0.0",
-    "fastify-jwt": "^0.10.0",
+    "fastify-jwt": "^4.2.0",
     "fastify-mysql": "^0.3.0",
     "fastify-plugin": "^1.5.0",
     "fastify-redis": "^3.1.0",
